@@ -39,6 +39,8 @@ def scrape_council(url)
   councillor_list_elements.each do |element|
     text = element.text
 
+    name = extract_councillor_name(text)
+
     ward = if text.include? "Unsubdivided"
       nil
     else
@@ -47,10 +49,8 @@ def scrape_council(url)
 
     if text.include?("(Mayor")
       position = "mayor"
-      name = extract_councillor_name(text)
     else
       position = nil
-      name = extract_councillor_name(text)
     end
 
     record = {
