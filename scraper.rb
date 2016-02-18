@@ -47,10 +47,10 @@ def scrape_council(url)
       text.split(" - ")[0].strip
     end
 
-    if text.include?("(Mayor")
-      position = "mayor"
+    position = if text.include?("(Mayor")
+      "mayor"
     else
-      position = nil
+       nil
     end
 
     record = {
