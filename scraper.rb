@@ -50,7 +50,7 @@ def scrape_council(url)
       name = extract_councillor_name(text)
     else
       position = nil
-      name = text.sub(/^.*- Cr/, "").strip
+      name = extract_councillor_name(text)
     end
 
     record = {
