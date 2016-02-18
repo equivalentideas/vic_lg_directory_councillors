@@ -17,7 +17,9 @@ def create_id(council, name)
 end
 
 def extract_councillor_name(string)
-  string.sub(/^.*- Cr/, "").strip.gsub(/[(]mayor.*[)].*$/i, "").strip
+  string.sub(/^.*- Cr/, "") # strip pretext
+        .gsub(/[(]mayor.*[)].*$/i, "") # strip position text
+        .strip
 end
 
 def scrape_council(url)
