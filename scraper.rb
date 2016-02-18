@@ -44,10 +44,10 @@ def scrape_council(url)
 
     if text.include?("(Mayor")
       position = "mayor"
-      name = text.sub(/^.*Cr/, "").strip.sub(/[(].*$/, "").strip
+      name = text.sub(/^.*- Cr/, "").strip.sub(/[(].*$/, "").strip
     else
       position = nil
-      name = text.sub(/^.*Cr/, "").strip
+      name = text.sub(/^.*- Cr/, "").strip
     end
 
     record = {
