@@ -11,6 +11,11 @@ def simplify_name(text)
   end
 end
 
+def create_id(council, name)
+  components = council + "/" + name
+  components.downcase.gsub(" ","_")
+end
+
 def scrape_council(url)
   agent = Mechanize.new
   page = agent.get(url)
@@ -46,6 +51,7 @@ def scrape_council(url)
     end
 
     record = {
+      "id" => create_id(council, name),
       "council" => council,
       "ward" => ward,
       "councillor" => name,
