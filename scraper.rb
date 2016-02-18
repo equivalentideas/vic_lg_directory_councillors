@@ -28,8 +28,7 @@ def scrape_council(url)
   website_key = contact_keys.find{ |elm| elm.text == "Web:" }
   website = website_key.next_element.children[0][:href]
 
-  councillor_list_elements = page.at(".councillors")
-                                 .children
+  councillor_list_elements = page.search(".councillors p")
                                  .select { |elm| elm.text.include?(" Cr ") }
   # Do a check against the number of councillors described
 
