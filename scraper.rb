@@ -16,6 +16,10 @@ def create_id(council, name)
   components.downcase.gsub(" ","_")
 end
 
+def extract_councillor_name(string)
+  string.sub(/^.*- Cr/, "").strip.gsub(/[(]mayor.*[)].*$/i, "").strip
+end
+
 def scrape_council(url)
   agent = Mechanize.new
   page = agent.get(url)
@@ -43,7 +47,7 @@ def scrape_council(url)
 
     if text.include?("(Mayor")
       position = "mayor"
-      name = text.sub(/^.*- Cr/, "").strip.gsub(/[(]mayor.*[)].*$/i, "").strip
+      name = extract_councillor_name(text)
     else
       position = nil
       name = text.sub(/^.*- Cr/, "").strip
