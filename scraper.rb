@@ -18,7 +18,7 @@ end
 
 def extract_councillor_name(string)
   string.sub(/^.*- Cr/, "") # strip pretext
-        .gsub(/[(]mayor.*[)].*$/i, "") # strip position text
+        .gsub(/[(](mayor|deputy|lord).*[)].*$/i, "") # strip position text
         .strip
 end
 
