@@ -1,5 +1,6 @@
 require 'scraperwiki'
 require 'mechanize'
+require 'pry'
 
 # Remove councillor whatnot
 def simplify_name(text)
