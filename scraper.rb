@@ -49,6 +49,8 @@ def scrape_council(url)
 
     position = if text.include?("(Mayor")
       "mayor"
+    elsif text.include?("(Deputy")
+      "deputy mayor"
     else
        nil
     end
