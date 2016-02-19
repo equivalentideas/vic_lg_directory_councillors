@@ -91,3 +91,6 @@ page = agent.get("https://knowyourcouncil.vic.gov.au/councils")
 urls = page.at("#myc-council-list").search("a").map {|a| a["href"]}
 
 urls.each {|url| scrape_council(url)}
+
+puts "#{urls.count} councils listed"
+puts "#{ScraperWiki.select("* from data group by council").count} councils scraped"
