@@ -44,7 +44,7 @@ def scrape_council(url)
 
     name = extract_councillor_name(text)
 
-    ward = if text.include? "Unsubdivided"
+    ward = if text.include?("Unsubdivided") || text.include?("Leadership Team")
       nil
     else
       text.split(" - ")[0].strip
