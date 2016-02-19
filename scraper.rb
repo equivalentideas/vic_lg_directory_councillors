@@ -80,7 +80,7 @@ def scrape_council(url)
   no_of_scraped_counillors = ScraperWiki.select("* from data WHERE council ==\"#{council}\"").count
 
   if no_of_scraped_counillors != no_of_expected_councillors
-    puts "#{council}: Number of scraped councillors doesn't match count on page - #{url}"
+    puts "#{council}: Number of scraped councillors doesn't match count on page - #{url}\n\n"
   end
 end
 
