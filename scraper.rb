@@ -4,7 +4,7 @@ require 'pry'
 
 # Remove councillor whatnot
 def simplify_name(text)
-  if text.split(" ").first == "Cr"
+  if text.split(" ").first =~ /(Cr|Rt|Mr)/
     text.split(" ")[1..-1].join(" ")
   else
     text
@@ -17,9 +17,11 @@ def create_id(council, name)
 end
 
 def extract_councillor_name(string)
-  string.sub(/^.*- (Cr|Rt)/, "") # strip pretext
+  string = string.split(" - ")[1..-1].join(" - ") # strip pretext
         .gsub(/[(](mayor|deputy|lord).*[)].*$/i, "") # strip position text
         .strip
+
+  simplify_name(string)
 end
 
 def scrape_council(url)
