@@ -17,7 +17,7 @@ def create_id(council, name)
 end
 
 def extract_councillor_name(string)
-  string.sub(/^.*- Cr/, "") # strip pretext
+  string.sub(/^.*- (Cr|Rt)/, "") # strip pretext
         .gsub(/[(](mayor|deputy|lord).*[)].*$/i, "") # strip position text
         .strip
 end
@@ -34,11 +34,12 @@ def scrape_council(url)
   website_key = contact_keys.find{ |elm| elm.text == "Web:" }
   website = website_key.next_element.children[0][:href]
 
-  councillor_list_elements = page.search(".councillors p")
-                                 .select { |elm| elm.text.include?(" Cr ") }
-  # Do a check against the number of councillors described
+  councillor_pars = page.search(".councillors p")
+  councillor_pars = councillor_pars.select do |par|
+    par.text.include?(" Cr ") || par.text.include?(" Rt ")
+  end
 
-  councillor_list_elements.each do |element|
+  councillor_pars.each do |element|
     text = element.text
 
     name = extract_councillor_name(text)
