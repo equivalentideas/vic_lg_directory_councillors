@@ -49,6 +49,12 @@ def scrape_council(url)
 
     name = extract_councillor_name(text)
 
+    start_date = if text.include?("By-election")
+      Date.parse(text.split("By-election").last.split("(").first.delete(")").strip).to_s
+    else
+      nil
+    end
+
     ward = if text.include?("Unsubdivided") || text.include?("Leadership Team")
       nil
     else
@@ -69,7 +75,8 @@ def scrape_council(url)
       "ward" => ward,
       "name" => name,
       "executive" => position,
-      "council_website" => website
+      "council_website" => website,
+      "start_date" => start_date
     }
 
     ScraperWiki.save_sqlite(["council", "name"], record)
