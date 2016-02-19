@@ -17,7 +17,7 @@ def create_id(council, name)
 end
 
 def extract_councillor_name(string)
-  string = string.split(" - ")[1..-1].join(" - ") # strip pretext
+  string = string.split("- ")[1..-1].join(" - ") # strip pretext
         .gsub(/[(](mayor|deputy|lord).*[)].*$/i, "") # strip position text
         .gsub(/[(]By-election.*[)]/, "") # strip by-election text
         .strip
@@ -58,7 +58,7 @@ def scrape_council(url)
     ward = if text.include?("Unsubdivided") || text.include?("Leadership Team")
       nil
     else
-      text.split(" - ")[0].strip
+      text.split("- ")[0].strip
     end
 
     position = if text.include?("(Mayor") || text.include?("(Lord Mayor")
