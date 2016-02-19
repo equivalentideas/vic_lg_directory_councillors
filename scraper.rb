@@ -28,7 +28,7 @@ def scrape_council(url)
   agent = Mechanize.new
   page = agent.get(url)
 
-  council = page.at("h1").inner_text
+  council = page.at(".elections h2").next_element.text.split(" is ").first.strip
 
   contact_keys = page.at(".council-profile-contact-information")
                      .search(".council-profile-contact-title")
