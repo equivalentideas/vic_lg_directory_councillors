@@ -67,9 +67,15 @@ def scrape_council(url)
       "council_website" => website
     }
 
-    p record
-
     ScraperWiki.save_sqlite(["council", "councillor"], record)
+  end
+
+  # TODO: Do a check against the number of councillors described
+  no_of_expected_councillors = page.at(".councillors p").text.scan(/^\d*/).first.to_i
+  no_of_scraped_counillors = ScraperWiki.select("* from data WHERE council ==\"#{council}\"").count
+
+  if no_of_scraped_counillors != no_of_expected_councillors
+    puts "#{council}: Number of scraped councillors doesn't match count on page - #{url}"
   end
 end
 
