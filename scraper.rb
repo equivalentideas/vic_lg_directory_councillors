@@ -50,7 +50,7 @@ def scrape_council(url)
       text.split(" - ")[0].strip
     end
 
-    position = if text.include?("(Mayor")
+    position = if text.include?("(Mayor") || text.include?("(Lord Mayor")
       "mayor"
     elsif text.include?("(Deputy")
       "deputy mayor"
