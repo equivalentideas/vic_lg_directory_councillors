@@ -38,7 +38,7 @@ def scrape_council(url)
 
   councillor_pars = page.search(".councillors p")
   councillor_pars = councillor_pars.select do |par|
-    par.text.include?(" Cr ") || par.text.include?(" Rt ")
+    par.text.include?(" - ")
   end
 
   councillor_pars.each do |element|
