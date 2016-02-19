@@ -19,6 +19,7 @@ end
 def extract_councillor_name(string)
   string = string.split(" - ")[1..-1].join(" - ") # strip pretext
         .gsub(/[(](mayor|deputy|lord).*[)].*$/i, "") # strip position text
+        .gsub(/[(]By-election.*[)]/, "") # strip by-election text
         .strip
 
   simplify_name(string)
