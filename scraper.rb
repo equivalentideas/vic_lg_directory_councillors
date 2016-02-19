@@ -75,7 +75,6 @@ def scrape_council(url)
     ScraperWiki.save_sqlite(["council", "name"], record)
   end
 
-  # TODO: Do a check against the number of councillors described
   no_of_expected_councillors = page.at(".councillors p").text.scan(/\d+/).first.to_i
   no_of_scraped_counillors = ScraperWiki.select("* from data WHERE council ==\"#{council}\"").count
 
