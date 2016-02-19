@@ -67,12 +67,12 @@ def scrape_council(url)
       "id" => create_id(council, name),
       "council" => council,
       "ward" => ward,
-      "councillor" => name,
-      "position" => position,
+      "name" => name,
+      "executive" => position,
       "council_website" => website
     }
 
-    ScraperWiki.save_sqlite(["council", "councillor"], record)
+    ScraperWiki.save_sqlite(["council", "name"], record)
   end
 
   # TODO: Do a check against the number of councillors described
