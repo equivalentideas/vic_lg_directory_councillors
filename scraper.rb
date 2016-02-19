@@ -22,7 +22,7 @@ def extract_councillor_name(string)
         .gsub(/[(]By-election.*[)]/, "") # strip by-election text
         .strip
 
-  simplify_name(string)
+  simplify_name(string).strip
 end
 
 def scrape_council(url)
