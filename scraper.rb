@@ -44,6 +44,8 @@ def scrape_council(url)
   councillor_pars.each do |element|
     text = element.text
 
+    next if text.include?("Vacancy")
+
     name = extract_councillor_name(text)
 
     ward = if text.include?("Unsubdivided") || text.include?("Leadership Team")
